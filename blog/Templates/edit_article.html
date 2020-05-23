@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit article{% endblock title %}
+
+{% block content %}
+
+    <h1>edit article</h1>
+    <form method="post" action={% url 'blog:edit_article' article.slug %}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="edit_article">Save changes</button>
+    </form>
+
+{% endblock content %}

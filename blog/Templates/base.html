@@ -7,10 +7,10 @@
 <body>
 <p>
     <a href="{% url 'blog:index' %}">Home</a> -
-    <a href="{% url 'blog:blog' %}">Blog</a>
+    <a href="{% url 'blog:blog' %}">Blog</a> -
+    <a href="{% url 'blog:add_article' %}">Add article</a>
     <hr>
 </p>
 {% block content %}{% endblock content %}
-
 </body>
 </html>

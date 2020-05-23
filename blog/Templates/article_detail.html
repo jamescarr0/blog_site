@@ -5,7 +5,7 @@
 {% block content %}
 
     <h1>{{ article.title }}</h1>
-    <p>{{ article.date }}</p>
+    <p>{{ article.date|date:'M d, Y'}}</p>
     <hr>
     <p>{{ article.body }}</p>
 
