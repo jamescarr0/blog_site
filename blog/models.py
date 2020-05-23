@@ -1,26 +1,32 @@
 from django.db import models
+from django.urls import reverse
 
 
-class Blog(models.Model):
+class Article(models.Model):
     """
-    A class to represent a users blog articles.
+    A class to represent users articles.
 
     Attributes
     ----------
     self.title : str
-        title of users blog.
+        title of users article.
     self.body : str
         article/blog content.
     self.date : date
         time and date of article submission.
     self.slug : str
+        Pretty URL slugs for blog pages.
 
     Methods
     -------
     ___str___():
-        returns a string represenation of the model.
+        returns a string representation of the model.
+
     snippet():
         returns a string snippet with ellipsis.
+
+    get_absolute_url():
+        returns a URL using a 'slug' as its key
     """
 
     title = models.CharField(max_length=100)
@@ -36,3 +42,6 @@ class Blog(models.Model):
         """ Return a string snippet plus ellipsis. """
         snippet = f"{self.body[:50]}..."
         return snippet
+
+    def get_absolute_url(self):
+        return reverse('blog:article_detail', kwargs={'slug': self.slug})
