@@ -14,7 +14,7 @@ def index(request):
 def blog(request):
     """ Show a snippet of all blog articles. """
     # Get all articles and sort by date added.
-    articles = Article.objects.order_by('date')
+    articles = Article.objects.order_by('-date')
     context = {'articles': articles}
     return render(request, 'blog.html', context)
 
