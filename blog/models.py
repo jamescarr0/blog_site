@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Article(models.Model):
@@ -8,14 +9,16 @@ class Article(models.Model):
 
     Attributes
     ----------
-    self.title : str
+    title : str
         title of users article.
-    self.body : str
+    body : str
         article/blog content.
-    self.date : date
+    date : date
         time and date of article submission.
-    self.slug : str
+    slug : str
         Pretty URL slugs for blog pages.
+    author : user
+        name of the user who created the article.
 
     Methods
     -------
@@ -33,6 +36,7 @@ class Article(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         """ Returns a string representation of the model. """
