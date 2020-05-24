@@ -7,9 +7,9 @@
 {% endblock page_header %}
 
 {% block content %}
-    <form method="post" action={% url 'blog:edit_article' article.slug %}>
+    <form enctype="multipart/form-data" method="post" action={% url 'blog:edit_article' article.slug %}>
         {% csrf_token %}
         {{ form.as_p }}
-        <button name="edit_article">Save changes</button>
+        <button name="submit">Save changes</button>
     </form>
 {% endblock content %}
