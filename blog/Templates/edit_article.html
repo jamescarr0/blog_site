@@ -2,13 +2,14 @@
 
 {% block title %}Edit article{% endblock title %}
 
-{% block content %}
+{% block page_header %}
+    <h1 class="display-3">Edit article.</h1>
+{% endblock page_header %}
 
-    <h1>edit article</h1>
+{% block content %}
     <form method="post" action={% url 'blog:edit_article' article.slug %}>
         {% csrf_token %}
         {{ form.as_p }}
         <button name="edit_article">Save changes</button>
     </form>
-
 {% endblock content %}
