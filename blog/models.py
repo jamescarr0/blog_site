@@ -44,7 +44,7 @@ class Article(models.Model):
 
     def snippet(self):
         """ Return a string snippet plus ellipsis. """
-        snippet = f"{self.body[:50]}..."
+        snippet = f"{self.body[:150]}..."
         return snippet
 
     def get_absolute_url(self):
