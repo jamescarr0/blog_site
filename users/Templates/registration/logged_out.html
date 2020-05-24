@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Logout{% endblock title %}
 
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Ciao!</h1>
+        <p class="lead">You have been logged out.  Thank-you for visiting.</p>
+        <a class="btn btn-lg btn-primary" href="{% url 'users:login' %}" role="button">Log in &raquo;</a>
+    </div>
+{% endblock page_header %}
+
 {% block content %}
-    <h1>Ciao!</h1>
-    <p>Thank you for you visit.  You have now been logged out.</p>
 {% endblock content %}

@@ -2,10 +2,15 @@
 
 {% block title %}Homepage{% endblock title %}
 
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Welcome to the blog site project.</h1>
+
+        <p class="lead">Welcome to the django blog site project.</p>
+        <a class="btn btn-lg btn-primary" href="{% url 'blog:blog' %}" role="button">View blog &raquo;</a>
+    </div>
+{% endblock page_header %}
+
 {% block content %}
-
-    <h1>Home page.</h1>
-    <hr>
-    <p>Welcome.</p>
-
+    <p>We are functional ;-) </p>
 {% endblock content %}

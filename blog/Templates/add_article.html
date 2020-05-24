@@ -1,13 +1,21 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
 
 {% block title %}Add article{% endblock title %}
 
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Create new article</h1>
+        <p class="lead">You are limited by your own imagination... Let if fly.</p>
+    </div>
+{% endblock page_header %}
+
 {% block content %}
-    <h1>Add new article</h1>
-    <hr>
     <form method="post" action="{% url 'blog:add_article' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-    <button name="submit_article">Submit article</button>
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button name="submit_article" class="btn btn-primary">Publish article</button>
+        {% endbuttons %}
     </form>
 {% endblock content %}

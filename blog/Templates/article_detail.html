@@ -2,12 +2,16 @@
 
 {% block title %}{{ article.title }}{% endblock title %}
 
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">{{ article.title }}</h1>
+        <p class="lead">Written by {{ article.author.get_full_name }}</p>
+        <p class="lead">{{ article.date|date:'M d, Y'}}</p>
+    </div>
+{% endblock page_header %}
+
 {% block content %}
 
-    <h1>{{ article.title }}</h1>
-    <p>Written by {{ article.author.get_full_name }}</p>
-    <p>{{ article.date|date:'M d, Y'}}</p>
-    <hr>
-    <p>{{ article.body }}</p>
+    <p class="lead">{{ article.body }}</p>
 
 {% endblock content %}

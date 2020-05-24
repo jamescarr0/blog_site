@@ -2,8 +2,13 @@
 
 {% block title %}Blog{% endblock title %}
 
+{% block page_header %}
+        <div class="jumbotron">
+        <h1 class="display-3">Blog posts</h1>
+        </div>
+{% endblock page_header %}
+
 {% block content %}
-    <h1>Blog</h1>
     {% for article in articles %}
         <p>
             <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>

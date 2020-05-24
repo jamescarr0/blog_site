@@ -10,9 +10,11 @@ from .models import Article
 
 class AddArticleForm(forms.ModelForm):
     """ Automatically build a form using the information from supplied model. """
+
     class Meta:
         model = Article
         fields = ['title', 'body', 'slug']
+        labels = {'slug': 'SEO URL Slug'}
 
 
 class EditArticleForm(AddArticleForm):
