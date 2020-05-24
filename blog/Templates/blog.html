@@ -3,14 +3,10 @@
 {% block title %}Blog{% endblock title %}
 
 {% block content %}
-
-    <h1>My blog</h1>
+    <h1>Blog</h1>
     {% for article in articles %}
         <p>
-            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a> -
-            <a href="{% url 'blog:edit_article' article.slug %}">Edit</a>
-            <a href="{% url 'blog:delete_article' article.slug %}">Delete article</a>
+            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
         </p>
     {% endfor %}
-
 {% endblock content %}

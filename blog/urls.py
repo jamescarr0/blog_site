@@ -17,8 +17,8 @@ urlpatterns = [
     # Blog detail view - shows the full article detail.
     path('blog/article/<slug:slug>', views.article_detail, name='article_detail'),
 
-    # User patterns - Add/Edit/Delete articles.
-    # -----------------------------------------
+    # Articles created by the current user only.
+    path('blog/my-articles', views.user_articles, name='user_articles'),
 
     # Add new article
     path('blog/add-article', views.add_article, name='add_article'),

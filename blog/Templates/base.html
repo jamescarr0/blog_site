@@ -5,12 +5,18 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-<p>
     <a href="{% url 'blog:index' %}">Home</a> -
-    <a href="{% url 'blog:blog' %}">Blog</a> -
-    <a href="{% url 'blog:add_article' %}">Add article</a>
+    <a href="{% url 'blog:blog' %}">Blog</a>
+    {% if user.is_authenticated %}
+    <span style="float: right">
+        Logged in as: {{ user.get_full_name }}. -
+        <a href="{% url 'blog:user_articles' %}">Manage</a> -
+        <a href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+        <span style="float:right"><a href="{% url 'users:login' %}">Log in</a></span>
+    {% endif %}
+    </span>
     <hr>
-</p>
 {% block content %}{% endblock content %}
 </body>
 </html>
