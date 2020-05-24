@@ -8,10 +8,14 @@
         <p class="lead">Written by {{ article.author.get_full_name }}</p>
         <p class="lead">{{ article.date|date:'M d, Y'}}</p>
     </div>
+
 {% endblock page_header %}
 
 {% block content %}
 
-    <p class="lead">{{ article.body }}</p>
+        {% if article.image %}
+            <img class="img-responsive" src="{{ article.image.url }}" alt="" height="auto" width="100%">
+        {% endif %}
 
+    <p class="lead">{{ article.body }}</p>
 {% endblock content %}

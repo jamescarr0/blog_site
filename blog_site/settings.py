@@ -18,7 +18,7 @@ SECRET_KEY = 'wf69l-cqhxh^z*hhlu)!k5-(18!b+3_acw28o*vyqb5+hhator'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.182']
 
 
 # Application definition
@@ -120,7 +120,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # My settings.
 
 # Redirect to login page when trying to access a login_required page.
 LOGIN_URL = 'users:login'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -11,6 +11,7 @@
 {% block content %}
     {% for article in articles %}
         <div class="card border-info mb-3">
+            <img src="" class="card-img" alt="">
             <div class="card-header">{{ article.date|date:'M d, Y'}}
                 <span style="float: right">Written by {{ article.author.get_full_name.title }}</span>
             </div>

@@ -58,7 +58,7 @@ def edit_article(request, slug):
         form = EditArticleForm(instance=article)
     else:
         # POST data submitted, process data.
-        form = EditArticleForm(instance=article, data=request.POST)
+        form = EditArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             form.save()
             return back_to_blog_page()
@@ -82,7 +82,7 @@ def delete_article(request, slug):
 @login_required
 def user_articles(request):
     """ Show articles created by the user only. """
-    articles = Article.objects.filter(author=request.user).order_by('date')
+    articles = Article.objects.filter(author=request.user).order_by('-date')
     context = {'articles': articles}
     return render(request, 'user_articles.html', context)
 

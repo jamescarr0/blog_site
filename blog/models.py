@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -22,6 +23,9 @@ class Article(models.Model):
 
     Methods
     -------
+    create_path:
+        returns a path to the users media directory.
+        
     ___str___():
         returns a string representation of the model.
 
@@ -32,11 +36,17 @@ class Article(models.Model):
         returns a URL using a 'slug' as its key
     """
 
+    def create_path(instance, filename):
+        """ Returns the users media directory.  """
+        path = os.path.join('users/' + instance.author.username, 'images/', filename)
+        return path
+
     title = models.CharField(max_length=100)
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to=create_path, blank=True)
 
     def __str__(self):
         """ Returns a string representation of the model. """
@@ -48,4 +58,5 @@ class Article(models.Model):
         return snippet
 
     def get_absolute_url(self):
+        """ returns the URL for the requested article. """
         return reverse('blog:article_detail', kwargs={'slug': self.slug})
