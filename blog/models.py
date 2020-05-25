@@ -45,12 +45,12 @@ class Article(models.Model):
     """
 
     def create_path(instance, filename):
-        """ Returns the users media directory.  """
+        """ Returns the path to save users image.  """
 
         # Rename image filename.
         filename = instance._create_img_filename(filename)
 
-        # Set the path to users image dir.
+        # Create path to image.
         path = os.path.join('users/' + instance.author.username, 'images/', filename)
         return path
 
