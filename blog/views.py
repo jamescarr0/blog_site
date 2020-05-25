@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -34,7 +36,7 @@ def add_article(request):
         form = AddArticleForm()
     else:
         # POST data submitted, process data.
-        form = AddArticleForm(data=request.POST)
+        form = AddArticleForm(request.POST, request.FILES)
         if form.is_valid():
             new_article = form.save(commit=False)
             new_article.author = request.user
@@ -75,6 +77,11 @@ def delete_article(request, slug):
     # Check that the current user has permission to delete the article.
     check_user(request, article)
 
+    # Check if article contains image and remove.
+    if os.path.isfile(article.image.path):
+        os.remove(article.image.path)
+
+    # Goodbye ;)
     article.delete()
     return back_to_blog_page()
 
