@@ -13,8 +13,8 @@ class AddArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'body', 'slug', 'image']
-        labels = {'slug': 'SEO URL Slug'}
+        fields = ['title', 'body', 'slug', 'image', 'image_alt']
+        labels = {'slug': 'URL description', 'image_alt': 'Image description'}
 
 
 class EditArticleForm(AddArticleForm):

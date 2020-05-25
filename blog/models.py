@@ -10,22 +10,30 @@ class Article(models.Model):
 
     Attributes
     ----------
-    title : str
+    self.title : str
         title of users article.
-    body : str
+    self.body : str
         article/blog content.
-    date : date
+    self.date : date
         time and date of article submission.
-    slug : str
+    self.slug : str
         Pretty URL slugs for blog pages.
-    author : user
+    self.author : user
         name of the user who created the article.
+    self.image : ImageField
+        Image uploaded by user.
+    self.image_alt : str
+        Image ALT tag for HTML templates.
+
 
     Methods
     -------
     create_path:
         returns a path to the users media directory.
-        
+
+    _create_img_filename:
+        returns a new image filename before saving relating to its content.
+
     ___str___():
         returns a string representation of the model.
 
@@ -38,15 +46,32 @@ class Article(models.Model):
 
     def create_path(instance, filename):
         """ Returns the users media directory.  """
+
+        # Rename image filename.
+        filename = instance._create_img_filename(filename)
+
+        # Set the path to users image dir.
         path = os.path.join('users/' + instance.author.username, 'images/', filename)
         return path
+
+    def _create_img_filename(self, filename):
+        """ Rename the uploaded image relating to the content.
+            Returns the new filename.
+        """
+        # Get the image extension
+        ext = filename.split('.')[-1]
+
+        # Create filename base on the slug and add the extension.
+        filename = f'{self.slug}.{ext}'
+        return filename
 
     title = models.CharField(max_length=100)
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=50, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to=create_path, blank=True)
+    image = models.ImageField(upload_to=create_path, blank=True)
+    image_alt = models.CharField(max_length=125)
 
     def __str__(self):
         """ Returns a string representation of the model. """
